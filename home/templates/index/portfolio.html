@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}  Portfolio {% endblock title %}
+{% block body %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+<style>
+    body{
+        background: linear-gradient(135deg, #c8291e 0%, #0b1252 100%);
+    }
+</style>
+
+
+<body style=" background: linear-gradient(135deg, #c8291e 0%, #0b1252 100%)"class="homepage-3 ">
+        <!-- Portfolio area -->
+        <section  style=" background: linear-gradient(135deg, #c8291e 0%, #0b1252 100%)"class="section case-studies ptb_100">
+            <div class="container">
+                <h2 style="text-align: center;margin-bottom: 30px;">Our Portfolio</h2>
+                <div class="row">
+                    {% for query in portfolio %}
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <!-- Single Case Studies -->
+                        <div class="single-case-studies">
+                            <!-- Case Studies Thumb -->
+                            <a href="#">
+
+                                <img src="{{query.project_image.url}}" alt="" style="height: 300px;width:500px;object-fit:cover;">
+                            </a>
+                            <!-- Case Studies Overlay -->
+                            {% if query.project_link %}
+                            <a href="{{query.project_link}}" target="_blank"  class="case-studies-overlay">
+                                <span class="overlay-text text-center p-3">
+                                    <i class="fas fa-search-plus fa-2x text-white"></i>
+                                    <h3 class="text-white mt-2 mb-3">{{query.service_type}}</h3>
+                                    <p class="text-white">{{query.project_desc}}</p>
+                                </span>
+                            </a>
+                            {% else %}
+                            <a href="#" target="_blank"  class="case-studies-overlay">
+                                <span class="overlay-text text-center p-3">
+                                    <i class="fas fa-search-plus fa-2x text-white"></i>
+                                    <h3 class="text-white mt-2 mb-3">{{query.service_type}}</h3>
+                                    <p class="text-white">{{query.project_desc}}</p>
+                                </span>
+                            </a>
+                            </a>
+
+                            {% endif %}
+                                <!-- Overlay Text -->
+                              
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>            
+            </div>
+        </section> 
+        <!-- portfolio area end -->
+</body>
+{% endblock body %}

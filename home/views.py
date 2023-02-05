@@ -6,7 +6,6 @@ from django.contrib import messages
 from .models import Contact, Portfolio, Team, Testimonial
 
 def index(request):
-    portfolio = Portfolio.objects.all().order_by('-time')[0:6]
     testimonial = Testimonial.objects.all().order_by('-published_at')[0:3]
     team = Team.objects.all()
     if request.method == 'POST':
@@ -38,3 +37,7 @@ def index(request):
         messages.success(request,'Thanks for contacting,our team will connect with you soon!')
         return HttpResponseRedirect(reverse('index:index'))
     return render(request,'index/index.html',{'portfolio':portfolio,'testimonial':testimonial,'team':team})
+
+def portfolio(request):
+    portfolio=Portfolio.objects.all()
+    return render(request,'index/portfolio.html',{'portfolio':portfolio})
